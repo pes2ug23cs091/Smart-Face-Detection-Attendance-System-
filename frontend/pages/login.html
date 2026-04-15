@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Smart Attendance - Login</title>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
+	<body>
+		<div class="app" style="grid-template-columns: 1fr;">
+			<main class="main" style="max-width: 1000px; margin: 0 auto;">
+				<div class="hero">
+					<span class="badge">Dual Access</span>
+					<h1>Smart Face Recognition Attendance</h1>
+					<p>Secure access for faculty and students with role-based dashboards.</p>
+				</div>
+
+				<div class="grid two" style="margin-top: 24px;">
+					<div class="card">
+						<h2>Login</h2>
+						<p>Select your role to access the correct dashboard.</p>
+						<div class="role-tabs" style="margin: 8px 0 12px;">
+							<button class="role-tab active" id="tabFaculty" type="button">Faculty</button>
+							<button class="role-tab" id="tabStudent" type="button">Student</button>
+						</div>
+						<form id="facultyForm" class="form-row panel active">
+							<div>
+								<label>Email</label>
+								<input class="input" id="email" type="email" placeholder="faculty@college.edu" required />
+							</div>
+							<div>
+								<label>Password</label>
+								<input class="input" id="password" type="password" placeholder="••••••••" required />
+							</div>
+							<button class="button" type="submit">Login as Faculty</button>
+						</form>
+						<form id="studentForm" class="form-row panel">
+							<div>
+								<label>Student ID / Roll Number</label>
+								<input class="input" id="studentId" type="text" placeholder="21CS001" required />
+							</div>
+							<div>
+								<label>Password</label>
+								<input class="input" id="studentPass" type="password" placeholder="••••••••" required />
+							</div>
+							<button class="button" type="submit">Login as Student</button>
+						</form>
+						<p class="muted">Use valid faculty or student credentials to continue.</p>
+					</div>
+
+					<div class="card">
+						<h2>System Status</h2>
+						<p>Check if the AI service is online before starting attendance.</p>
+						<div class="form-row" style="margin-top: 12px;">
+							<a class="button secondary" id="backToHome" href="../index.html">Back To Attendance Screen</a>
+							<label>API Base URL</label>
+							<input class="input" id="apiBase" placeholder="http://127.0.0.1:8080" />
+							<button class="button ghost" id="checkHealth" type="button">Check Health</button>
+							<div id="healthResult" class="muted"></div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<script src="../js/utils.js"></script>
+		<script src="../js/api.js"></script>
+		<script src="../js/login.js"></script>
+	</body>
+</html>

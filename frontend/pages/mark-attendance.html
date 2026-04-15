@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Mark Attendance</title>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
+	<body>
+		<div class="app">
+			<aside class="sidebar">
+				<div class="brand">
+					<span>Smart Attendance</span>
+					<strong>Faculty Console</strong>
+				</div>
+				<nav class="nav">
+					<a href="dashboard.html">Dashboard</a>
+					<a href="register-student.html">Register Student</a>
+					<a class="active" href="mark-attendance.html">Mark Attendance</a>
+					<a href="reports.html">Reports</a>
+					<a href="login.html">Sign Out</a>
+				</nav>
+			</aside>
+			<main class="main">
+				<div class="topbar">
+					<div>
+						<h1>Mark Attendance</h1>
+						<p class="muted">Start a locked classroom session. Students only show face, system marks automatically.</p>
+					</div>
+					<div class="status-pill" id="sessionState">Session: stopped</div>
+				</div>
+
+				<section class="grid two">
+					<div class="card">
+						<h2>Faculty Session Controls</h2>
+						<div class="form-row">
+							<div class="form-row two">
+								<div>
+									<label>Course ID</label>
+									<input class="input" id="courseId" type="number" placeholder="3" value="1" />
+								</div>
+								<div>
+									<label>Require Liveness Check</label>
+									<select id="requireLiveness" class="input">
+										<option value="no" selected>No</option>
+										<option value="yes">Yes</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-row two">
+								<div>
+									<label>Faculty Session PIN</label>
+									<input class="input" id="sessionPin" type="password" placeholder="Enter 4+ digit PIN" />
+								</div>
+								<div>
+									<label>Scan Interval (seconds)</label>
+									<input class="input" id="scanInterval" type="number" min="2" max="10" value="4" />
+								</div>
+							</div>
+							<div class="form-row" style="margin-top: 6px;">
+								<button class="button" id="startSession" type="button">Start Locked Session</button>
+								<button class="button secondary" id="endSession" type="button">End Session</button>
+							</div>
+							<p class="muted">When session is active, other faculty pages are blocked until PIN unlock.</p>
+							<div id="result" class="muted"></div>
+						</div>
+					</div>
+
+					<div class="card">
+						<h2>Live Camera (Auto Recognition)</h2>
+						<div class="video-wrap">
+							<video id="video" autoplay playsinline></video>
+						</div>
+						<canvas id="canvas" style="display:none"></canvas>
+						<button class="button ghost" id="checkLiveness" type="button">Run Liveness Test Now</button>
+					</div>
+				</section>
+
+				<section class="card" style="margin-top: 24px;">
+					<h2>Live Attendance Log</h2>
+					<table class="table" id="logTable">
+						<thead>
+							<tr>
+								<th>Time</th>
+								<th>Student</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</section>
+			</main>
+		</div>
+
+		<script src="../js/utils.js"></script>
+		<script src="../js/guard.js"></script>
+		<script src="../js/api.js"></script>
+		<script src="../js/camera.js"></script>
+		<script src="../js/mark-attendance.js"></script>
+	</body>
+</html>

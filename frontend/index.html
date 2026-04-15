@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Attendance - Student Attendance Screen</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main class="main" style="max-width: 1000px; margin: 0 auto; padding-top: 24px;">
+      <div class="hero" style="margin-bottom: 20px;">
+        <span class="badge">Student Attendance Screen</span>
+        <h1>Stand In Front Of Camera</h1>
+        <p>Students do not need login here. Faculty starts the session and attendance is marked automatically.</p>
+      </div>
+
+      <div class="grid two">
+        <section class="card">
+          <h2>Live Attendance Camera</h2>
+          <div class="form-row">
+            <div>
+              <label>Course ID</label>
+              <input class="input" id="courseId" type="number" value="1" />
+            </div>
+          </div>
+          <p class="muted" style="margin: 8px 0 0;">Auto mode is enabled. Face is captured continuously when a student comes in front of camera.</p>
+          <div class="video-wrap" style="margin-top: 8px;">
+            <video id="video" autoplay playsinline></video>
+          </div>
+          <canvas id="canvas" style="display:none"></canvas>
+          <div class="form-row" style="margin-top: 10px;">
+            <button class="button" id="startKiosk" type="button">Start Attendance Camera</button>
+            <button class="button secondary" id="stopKiosk" type="button">Stop</button>
+            <button class="button ghost" id="openLogin" type="button">Login (Faculty / Student)</button>
+          </div>
+          <p class="muted" id="kioskStatus">Waiting to start...</p>
+        </section>
+
+        <section class="card">
+          <h2>Live Marking Feed</h2>
+          <table class="table" id="kioskLog">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Student</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <script src="./js/utils.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/camera.js"></script>
+    <script src="./js/attendance-kiosk.js"></script>
+  </body>
+</html>

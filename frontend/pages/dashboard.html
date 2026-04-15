@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Smart Attendance - Dashboard</title>
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/dashboard.css" />
+	</head>
+	<body>
+		<div class="app">
+			<aside class="sidebar">
+				<div class="brand">
+					<span>Smart Attendance</span>
+					<strong>Faculty Console</strong>
+				</div>
+				<nav class="nav">
+					<a class="active" href="dashboard.html">Dashboard</a>
+					<a href="register-student.html">Register Student</a>
+					<a href="mark-attendance.html">Mark Attendance</a>
+					<a href="reports.html">Reports</a>
+					<a href="login.html">Sign Out</a>
+				</nav>
+			</aside>
+			<main class="main">
+				<div class="topbar">
+					<div>
+						<h1>Faculty Dashboard</h1>
+						<p class="muted">Only core controls required for student onboarding, attendance sessions, and reporting.</p>
+					</div>
+					<div class="status-pill" id="apiStatus">API: unknown</div>
+				</div>
+
+				<section class="stats">
+					<div class="stat-card">
+						<strong id="statStudents">0</strong>
+						<span>Total Registered Students</span>
+					</div>
+					<div class="stat-card">
+						<strong id="statToday">0</strong>
+						<span>Attendance Marked Today</span>
+					</div>
+					<div class="stat-card">
+						<strong id="statSession">Stopped</strong>
+						<span>Live Session Status</span>
+					</div>
+					<div class="stat-card">
+						<strong id="statRole">Faculty</strong>
+						<span>Current Access Role</span>
+					</div>
+				</section>
+
+				<section class="grid two" style="margin-top: 24px;">
+					<div class="card">
+						<h2>Operational Actions</h2>
+						<p class="muted">Follow this order: Register student -> Start locked attendance session -> Review reports.</p>
+						<div class="form-row" style="margin-top: 8px;">
+							<a class="button" href="register-student.html">Register Student</a>
+							<a class="button secondary" href="mark-attendance.html">Start Attendance Session</a>
+							<a class="button ghost" href="reports.html">View Reports</a>
+						</div>
+					</div>
+					<div class="card">
+						<h2>Live Guidance</h2>
+						<div class="chart">Use Mark Attendance page in locked mode so students only show face and cannot browse faculty pages.</div>
+					</div>
+				</section>
+
+				<section class="grid two" style="margin-top: 24px;">
+					<div class="card">
+						<h2>Session Feed</h2>
+						<div class="timeline" id="liveFeed">
+							<div class="timeline-item">
+								<strong>System ready</strong>
+								<span class="muted">Waiting for faculty to start locked session.</span>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<h2>System Checks</h2>
+						<p class="muted">Verify AI service and database connectivity.</p>
+						<div class="form-row" style="margin-top: 10px;">
+							<label>API Base URL</label>
+							<input class="input" id="apiBase" />
+							<button class="button ghost" id="checkHealth" type="button">Check Health</button>
+							<div id="healthResult" class="muted"></div>
+						</div>
+					</div>
+				</section>
+
+				<section class="card" style="margin-top: 24px;">
+					<h2>Registered Students By Section</h2>
+					<div class="form-row two" style="margin-bottom: 8px;">
+						<div>
+							<label>Select Section</label>
+							<select id="sectionFilter" class="input">
+								<option value="">All Sections</option>
+							</select>
+						</div>
+						<div style="display:flex; align-items:flex-end;">
+							<button class="button ghost" id="refreshStudents" type="button">Refresh Table</button>
+						</div>
+					</div>
+					<table class="table" id="studentsTable">
+						<thead>
+							<tr>
+								<th>Student ID</th>
+								<th>Roll Number</th>
+								<th>Name</th>
+								<th>Department</th>
+								<th>Year</th>
+								<th>Section</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<p class="muted" id="studentsTableMeta">Loading students...</p>
+				</section>
+
+				<section class="card" style="margin-top: 24px;">
+					<h2>Today's Attendance (Faculty View)</h2>
+					<div class="form-row two" style="margin-bottom: 8px;">
+						<div>
+							<label>Filter by Course</label>
+							<select class="input" id="courseFilter">
+								<option value="">All Courses</option>
+							</select>
+						</div>
+						<div style="display:flex; align-items:flex-end;">
+							<button class="button ghost" id="refreshAttendance" type="button">Refresh Attendance</button>
+						</div>
+					</div>
+					<table class="table" id="attendanceTable">
+						<thead>
+							<tr>
+								<th>Section</th>
+								<th>Roll Number</th>
+								<th>Name</th>
+								<th>Status</th>
+								<th>Time</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<p class="muted" id="attendanceTableMeta">Loading attendance...</p>
+				</section>
+			</main>
+		</div>
+
+		<script src="../js/utils.js"></script>
+		<script src="../js/guard.js"></script>
+		<script src="../js/api.js"></script>
+		<script src="../js/dashboard.js"></script>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Register Student</title>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
+	<body>
+		<div class="app">
+			<aside class="sidebar">
+				<div class="brand">
+					<span>Smart Attendance</span>
+					<strong>Faculty Console</strong>
+				</div>
+				<nav class="nav">
+					<a href="dashboard.html">Dashboard</a>
+					<a class="active" href="register-student.html">Register Student</a>
+					<a href="mark-attendance.html">Mark Attendance</a>
+					<a href="reports.html">Reports</a>
+					<a href="login.html">Sign Out</a>
+				</nav>
+			</aside>
+			<main class="main">
+				<div class="topbar">
+					<div>
+						<h1>Register Student</h1>
+						<p class="muted">Capture 5 angles for accurate recognition (front, left, right, up, down).</p>
+					</div>
+					<div class="status-pill">Face Enrollment</div>
+				</div>
+
+				<section class="grid two">
+					<div class="card">
+						<h2>Student Details</h2>
+						<form id="studentForm" class="form-row">
+							<div class="form-row two">
+								<div>
+									<label>Student ID</label>
+									<input class="input" id="studentId" type="number" placeholder="1" required />
+								</div>
+								<div>
+									<label>Roll Number</label>
+									<input class="input" id="rollNumber" type="text" placeholder="21CS001" />
+								</div>
+							</div>
+							<div class="form-row two">
+								<div>
+									<label>Student Name</label>
+									<input class="input" id="studentName" type="text" placeholder="Arjun Mehta" />
+								</div>
+								<div>
+									<label>Department</label>
+									<input class="input" id="department" type="text" placeholder="Computer Science" />
+								</div>
+							</div>
+							<div class="form-row two">
+								<div>
+									<label>Year</label>
+									<input class="input" id="year" type="number" placeholder="3" />
+								</div>
+								<div>
+									<label>Section</label>
+									<input class="input" id="section" type="text" placeholder="A" />
+								</div>
+							</div>
+							<div>
+								<label>Notes</label>
+								<textarea class="input" id="notes" rows="3" placeholder="Optional notes"></textarea>
+							</div>
+							<div class="form-row" style="margin-top: 8px;">
+								<button class="button ghost" id="captureFace" type="button">Capture Face (5 frames)</button>
+								<div class="muted" id="frameCount">Captured: 0</div>
+								<div class="muted" id="captureStatus"></div>
+							</div>
+							<button class="button" type="submit">Submit</button>
+						</form>
+						<p class="muted">Ensure the student already exists in the database before registering.</p>
+					</div>
+
+					<div class="card" id="faceCaptureCard" style="display:none;">
+						<h2>Face Capture</h2>
+						<div class="video-wrap" id="videoWrap" style="display:none;">
+							<video id="video" autoplay playsinline></video>
+						</div>
+						<canvas id="canvas" style="display:none"></canvas>
+						<p class="muted">Camera opens only during capture to reduce distractions.</p>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<script src="../js/utils.js"></script>
+		<script src="../js/guard.js"></script>
+		<script src="../js/api.js"></script>
+		<script src="../js/camera.js"></script>
+		<script src="../js/register-student.js"></script>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+# Root Python requirements for Smart Attendance (Flask-AI service)
+# Usage from project root:
+#   python -m pip install -r requirements.txt
+
+flask==3.1.0
+flask-cors==5.0.0
+opencv-python==4.10.0.84
+mediapipe==0.10.13
+deepface==0.0.93
+facenet-pytorch==2.6.0
+torch==2.2.2
+torchvision==0.17.2
+psycopg2-binary==2.9.10
+numpy==1.26.4
+pillow==10.2.0
+scipy==1.15.2
+python-dotenv==1.0.1
+tensorflow==2.16.1
+tf-keras==2.16.0
+protobuf==4.25.3

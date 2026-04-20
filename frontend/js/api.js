@@ -24,6 +24,23 @@ const Api = {
 			body: JSON.stringify(payload),
 		});
 	},
+	faculties: async () => {
+		const base = Utils.getApiBase();
+		return fetchJson(`${base}/api/faculty`);
+	},
+	createFaculty: async (payload) => {
+		const base = Utils.getApiBase();
+		return fetchJson(`${base}/api/faculty`, {
+			method: "POST",
+			body: JSON.stringify(payload),
+		});
+	},
+	deleteFaculty: async (id) => {
+		const base = Utils.getApiBase();
+		return fetchJson(`${base}/api/faculty/${encodeURIComponent(id)}`, {
+			method: "DELETE",
+		});
+	},
 	studentLogin: async (payload) => {
 		const base = Utils.getApiBase();
 		return fetchJson(`${base}/api/auth/student/login`, {
@@ -53,6 +70,32 @@ const Api = {
 		return fetchJson(`${base}/api/students`, {
 			method: "POST",
 			body: JSON.stringify(payload),
+		});
+	},
+	deleteStudent: async (id) => {
+		const base = Utils.getApiBase();
+		return fetchJson(`${base}/api/students/${encodeURIComponent(id)}`, {
+			method: "DELETE",
+		});
+	},
+	createCourse: async (payload) => {
+		const base = Utils.getApiBase();
+		return fetchJson(`${base}/api/courses`, {
+			method: "POST",
+			body: JSON.stringify(payload),
+		});
+	},
+	updateCourse: async (id, payload) => {
+		const base = Utils.getApiBase();
+		return fetchJson(`${base}/api/courses/${encodeURIComponent(id)}`, {
+			method: "PUT",
+			body: JSON.stringify(payload),
+		});
+	},
+	deleteCourse: async (id) => {
+		const base = Utils.getApiBase();
+		return fetchJson(`${base}/api/courses/${encodeURIComponent(id)}`, {
+			method: "DELETE",
 		});
 	},
 	register: async (payload) => {

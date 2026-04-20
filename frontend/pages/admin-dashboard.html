@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Attendance - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>Smart Attendance</span>
+          <strong>Admin Console</strong>
+        </div>
+        <nav class="nav">
+          <a class="active" href="admin-dashboard.html">Admin Dashboard</a>
+          <a href="login.html">Sign Out</a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <h1>Admin Dashboard</h1>
+            <p class="muted">Central control for users, courses, and attendance overview.</p>
+          </div>
+          <div class="status-pill" id="adminStatus">Admin Mode</div>
+        </div>
+
+        <section class="stats">
+          <div class="stat-card">
+            <strong id="facultyCount">0</strong>
+            <span>Total Faculty</span>
+          </div>
+          <div class="stat-card">
+            <strong id="studentCount">0</strong>
+            <span>Total Students</span>
+          </div>
+          <div class="stat-card">
+            <strong id="courseCount">0</strong>
+            <span>Total Courses</span>
+          </div>
+          <div class="stat-card">
+            <strong id="todayAttendanceCount">0</strong>
+            <span>Attendance Today</span>
+          </div>
+          <div class="stat-card">
+            <strong id="apiState">Unknown</strong>
+            <span>API Health</span>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top: 24px;">
+            <h2>Manage Faculty</h2>
+            <p class="muted">Add faculty and maintain available teaching staff.</p>
+
+            <form id="facultyForm" class="form-row" style="margin-top: 10px;">
+              <div>
+                <label>Name</label>
+                <input id="facultyName" class="input" type="text" placeholder="Faculty Name" required />
+              </div>
+              <div>
+                <label>Email</label>
+                <input id="facultyEmail" class="input" type="email" placeholder="faculty@college.edu" required />
+              </div>
+              <div>
+                <label>Department</label>
+                <input id="facultyDept" class="input" type="text" placeholder="Computer Science" required />
+              </div>
+              <div>
+                <label>Password</label>
+                <input id="facultyPassword" class="input" type="text" value="Faculty@123" required />
+              </div>
+              <button class="button" type="submit">Add Faculty</button>
+            </form>
+
+            <table class="table" style="margin-top: 14px;" id="facultyTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </section>
+
+        <section class="grid two" style="margin-top: 24px;">
+          <div class="card">
+            <h2>Manage Courses</h2>
+            <p class="muted">Maintain course records for attendance mapping.</p>
+
+            <form id="courseForm" class="form-row" style="margin-top: 10px;">
+              <div>
+                <label>Course Code</label>
+                <input id="courseCode" class="input" type="text" placeholder="CS301" required />
+              </div>
+              <div>
+                <label>Course Name</label>
+                <input id="courseName" class="input" type="text" placeholder="Software Engineering" required />
+              </div>
+              <div>
+                <label>Section</label>
+                <input id="courseSection" class="input" type="text" placeholder="A" required />
+              </div>
+              <button class="button" type="submit">Add Course</button>
+            </form>
+
+            <div class="form-row" style="margin-top: 10px;">
+              <button id="refreshCourses" class="button ghost" type="button">Refresh Courses</button>
+              <button id="checkHealth" class="button ghost" type="button">Check Health</button>
+            </div>
+
+            <table class="table" style="margin-top: 14px;" id="coursesTable">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Section</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h2>Assign Faculty to Course & Section</h2>
+            <p class="muted">Map a faculty member to a course and section.</p>
+
+            <form id="assignmentForm" class="form-row" style="margin-top: 10px;">
+              <div>
+                <label>Select Faculty</label>
+                <select id="assignFaculty" class="input" required></select>
+              </div>
+              <div>
+                <label>Select Course</label>
+                <select id="assignCourse" class="input" required></select>
+              </div>
+              <div>
+                <label>Section</label>
+                <input id="assignSection" class="input" type="text" placeholder="A" required />
+              </div>
+              <button class="button" type="submit">Assign Faculty</button>
+            </form>
+
+            <table class="table" style="margin-top: 14px;" id="assignmentTable">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Section</th>
+                  <th>Assigned Faculty</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top: 24px;">
+          <h2>Section-wise Attendance Status</h2>
+          <p class="muted">Select a date and section to view present/absent count for that day.</p>
+
+          <div class="form-row two" style="margin-top: 10px;">
+            <div>
+              <label>Date</label>
+              <input id="statusDate" class="input" type="date" />
+            </div>
+            <div>
+              <label>Section</label>
+              <select id="statusSection" class="input"></select>
+            </div>
+          </div>
+          <div class="form-row" style="margin-top: 10px;">
+            <button id="loadStatus" class="button" type="button">Load Status</button>
+          </div>
+
+          <div class="stats" style="margin-top: 14px;">
+            <div class="stat-card">
+              <strong id="sectionTotal">0</strong>
+              <span>Total Students (Section)</span>
+            </div>
+            <div class="stat-card">
+              <strong id="sectionPresent">0</strong>
+              <span>Present</span>
+            </div>
+            <div class="stat-card">
+              <strong id="sectionAbsent">0</strong>
+              <span>Absent</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+  </body>
+</html>

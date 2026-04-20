@@ -1,5 +1,3 @@
-const apiBaseInput = Utils.$("#apiBase");
-apiBaseInput.value = Utils.getApiBase();
 const sectionFilterEl = Utils.$("#sectionFilter");
 const courseFilterEl = Utils.$("#courseFilter");
 const studentsTableBody = Utils.$("#studentsTable tbody");
@@ -161,7 +159,6 @@ const renderAttendanceTable = () => {
 };
 
 Utils.$("#checkHealth").addEventListener("click", async () => {
-  Utils.setApiBase(apiBaseInput.value.trim() || "http://127.0.0.1:8080");
   const result = await Api.health();
   const target = Utils.$("#healthResult");
   if (result.ok) {

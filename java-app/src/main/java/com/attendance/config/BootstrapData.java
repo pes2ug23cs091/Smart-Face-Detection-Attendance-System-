@@ -21,6 +21,7 @@ public class BootstrapData {
                 Faculty faculty = new Faculty();
                 faculty.setName("Admin User");
                 faculty.setEmail("admin@college.edu");
+                faculty.setDepartment("Administration");
                 faculty.setPasswordHash(passwordEncoder.encode("Admin@123"));
                 faculty.setRole("FACULTY");
                 faculty.setActive(true);
@@ -31,6 +32,7 @@ public class BootstrapData {
                 Faculty faculty = new Faculty();
                 faculty.setName("Faculty User");
                 faculty.setEmail("faculty@college.edu");
+                faculty.setDepartment("Computer Science");
                 faculty.setPasswordHash(passwordEncoder.encode("Faculty@123"));
                 faculty.setRole("FACULTY");
                 faculty.setActive(true);

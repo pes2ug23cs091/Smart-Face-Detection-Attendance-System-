@@ -34,7 +34,7 @@ public class SecurityConfig {
             .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .antMatchers("/api/auth/**", "/api/public/**", "/api/health").permitAll()
             .antMatchers(HttpMethod.GET, "/api/students/me", "/api/attendance/me").hasAnyRole("STUDENT", "FACULTY")
-            .antMatchers("/api/students/**", "/api/courses/**", "/api/face/**", "/api/reports/**", "/api/attendance/**").hasRole("FACULTY")
+            .antMatchers("/api/students/**", "/api/faculty/**", "/api/courses/**", "/api/face/**", "/api/reports/**", "/api/attendance/**").hasRole("FACULTY")
             .anyRequest().authenticated()
             .and()
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

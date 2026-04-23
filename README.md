@@ -1,4 +1,4 @@
-<img width="998" height="528" alt="image" src="https://github.com/user-attachments/assets/b28185ec-8746-4ea2-b687-54291556162a" /># Smart Face Detection Attendance System
+#Smart Face Detection Attendance System
 
 A comprehensive attendance system using face recognition with Flask AI backend, Java Spring Boot API, and web frontend.
 
@@ -420,8 +420,7 @@ Password: Student@123
 ## Security Notes
 
 - Change JWT secret in `application.properties`
-- Update CORS allowed origins for production<img width="976" height="480" alt="image" src="https://github.com/user-attachments/assets/1abf7018-79d9-4792-85ae-0d17e2a4501c" />
-
+- Update CORS allowed origins for production
 - Use HTTPS in production
 - Implement rate limiting for APIs
 - Validate all input data
